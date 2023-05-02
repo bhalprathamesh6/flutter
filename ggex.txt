@@ -1,0 +1,1330 @@
+﻿Sample Programs for MAP Practical Exam 
+1. Write a flutter program to create a display page using scaffold widget showing an image having  restaurant name and a floating button. On click of the floating button a new menu page should  open to display the food menu as shown below:
+  
+
+main.dart:
+import 'package:flutter/material.dart';
+
+
+import 'food.dart';
+void main (){
+  runApp(MaterialApp(
+  home:MyApp()
+  ));
+}
+
+
+food.dart
+import 'package:flutter/material.dart';
+
+
+class MyApp extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) {
+   return MaterialApp(
+     home: DisplayPage(),
+     debugShowCheckedModeBanner: false,
+   );
+ }
+}
+
+
+class DisplayPage extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(
+       title: Text('My Restaurants'),
+     ),
+     body: Column(
+       mainAxisAlignment: MainAxisAlignment.center,
+       children: [
+         Image.asset('/resturant.jpeg',
+           width: 500,
+           height: 500,
+         ),
+         SizedBox(height: 20),
+         Text(
+           'My Restaurant',
+           style: TextStyle(
+             fontSize: 24,
+             fontWeight: FontWeight.bold,
+           ),
+         ),
+       ],
+     ),
+     floatingActionButton: FloatingActionButton(
+       onPressed: () {
+         Navigator.push(
+           context,
+           MaterialPageRoute(builder: (context) => MenuPage()),
+         );
+       },
+       child: Icon(Icons.add),
+     ),
+   );
+ }
+}
+
+
+class MenuPage extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(
+       title: Text('Menu'),
+     ),
+     body: Column(
+       children: [
+         _buildMenuItem(
+           context,
+           '/burger.jpeg',
+           'Burger',
+           '100',
+         ),
+         _buildMenuItem(
+           context,
+           '/pizza.jpeg',
+           'Pizza',
+           '200',
+         ),
+         _buildMenuItem(
+           context,
+           '/pasta.jpeg',
+           'Pasta',
+           '150',
+         ),
+       ],
+     ),
+   );
+ }
+
+
+ Widget _buildMenuItem(
+     BuildContext context,
+     String imagePath,
+     String foodName,
+     String foodPrice,
+     ) {
+   return Padding(
+     padding: const EdgeInsets.all(8.0),
+     child: Card(
+       child: Column(
+         children: [
+           Image.asset(
+             imagePath,
+             width: 100,
+             height: 100,
+           ),
+           SizedBox(height: 10),
+           Text(
+             foodName,
+             style: TextStyle(
+               fontSize: 18,
+               fontWeight: FontWeight.bold,
+             ),
+           ),
+           SizedBox(height: 5),
+           Text(
+             '\₹$foodPrice',
+             style: TextStyle(
+               fontSize: 16,
+               color: Colors.green,
+               fontWeight: FontWeight.bold,
+             ),
+           ),
+         ],
+       ),
+     ),
+   );
+ }
+}
+
+
+Create a asset folder in root folder,and put the images as per following image.
+  
+
+
+
+Run command Pub get
+
+
+2. Write a flutter program to create a display page using scaffold widget showing an image having  Book Store name and a floating button. On click of the floating button a new menu page should  open to display the details of at least 7 books as shown below: 
+Main.dart:
+ import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'new3.dart';
+void main() {
+runApp(MaterialApp(
+//home:Bizcard(),
+//home:MyApp(),
+//home:ScafoldExample(),
+//home:MyHomePage(),
+//home:FirstRoute(),
+home:FirstRoute(),
+));
+}
+
+
+ new3.dart
+import 'package:flutter/material.dart';
+
+
+void main() {
+runApp(MaterialApp(
+title: 'Flutter Navigation And Gestures',
+theme: ThemeData(
+// This is the theme of your application.
+
+
+
+primarySwatch: Colors.green,
+),
+home: FirstRoute(),
+));
+}
+
+
+
+class FirstRoute extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: Text('Home Page'),
+),
+body: Center(child: Image.network('https://picsum.photos/id/1/200/300')),
+floatingActionButton: FloatingActionButton(
+onPressed: () {
+Navigator.push(
+context,
+MaterialPageRoute(builder: (context) => SecondRoute()),
+);
+},
+child: const Text('click'),
+backgroundColor: Colors.red[600],
+hoverColor: Colors.orange,
+),
+);
+}
+}
+
+
+
+class SecondRoute extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+List<String> images = [
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+"https://picsum.photos/id/1/200/300",
+];
+
+
+
+List<String> str = [
+"BOOK1",
+"BOOK2",
+"BOOK3",
+"BOOK4",
+"BOOK5",
+"BOOK6",
+"BOOK7",
+"BOOK8",
+"BOOK9",
+"BOOK10",
+];
+
+
+
+List<String> desc = [
+"Rs. 100",
+"Rs. 50",
+"Rs. 100",
+"Rs. 50",
+"Rs. 100",
+"Rs. 50",
+"Rs. 100",
+"Rs. 50",
+"Rs. 100",
+"Rs. 50",
+];
+
+
+
+return Scaffold(
+appBar: AppBar(
+title: Text("BookStore Items"),
+),
+body: ListView.builder(
+itemBuilder: (BuildContext, index) {
+return Card(
+child: ListTile(
+leading: CircleAvatar(
+backgroundImage: NetworkImage(images[index]),
+),
+title: Text(str[index]),
+subtitle: Text(desc[index]),
+),
+);
+},
+itemCount: images.length,
+shrinkWrap: true,
+padding: EdgeInsets.all(5),
+scrollDirection: Axis.vertical,
+));
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+3. Write a flutter program to create a display page using scaffold widget showing an image having  Mobile product store name and a floating button. On click of the floating button a new menu  page should open to display the details of atleast 7 different mobile phones as shown below: 
+main.dart
+ import 'package:flutter/material.dart';
+import 'new4.dart';
+void main() {
+runApp(MaterialApp(
+//home:Bizcard(),
+//home:MyApp(),
+//home:ScafoldExample(),
+//home:MyHomePage(),
+home:FirstRoute(),
+));
+}
+
+
+new4.dart
+ import 'package:flutter/material.dart';
+void main() {
+runApp(MaterialApp(
+title: 'Flutter Navigation And Gestures',
+theme: ThemeData(
+// This is the theme of your application.
+
+
+
+primarySwatch: Colors.green,
+),
+home: FirstRoute(),
+));
+}
+
+
+
+class FirstRoute extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: Text('Mobile Product Store'),
+),
+body: Center(child: Image.network('https://picsum.photos/id/1/200/300')),
+floatingActionButton: FloatingActionButton(
+onPressed: () {
+Navigator.push(
+context,
+MaterialPageRoute(builder: (context) => SecondRoute()),
+);
+},
+child: const Text('click'),
+backgroundColor: Colors.red[600],
+hoverColor: Colors.orange,
+),
+);
+}
+}
+class SecondRoute extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+List<String> images = [
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/16814-297-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21616-200-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21192-271-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21643-116-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/17664-237-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/18411-178-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21864-37-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21863-155-1.jpg",
+"https://assets.mspimages.in/c/tr:w-375,h-330,c-at_max/21218-170-1.jpg",
+];
+
+
+
+List<String> str = [
+"OPPO F21 Pro",
+"Samsung Galaxy M53 5G",
+"Xiaomi Redmi Note 11 Pro",
+"OnePlus Nord CE 2 5G",
+"OnePlus 10 Pro",
+"Samsung Galaxy A73 5G",
+"Moto G52",
+"OPPO F21 Pro 5G",
+"Samsung Galaxy M33 5G",
+];
+List<String> desc = [
+"₹ 22,999",
+"₹ 22,999",
+"₹ 18,999",
+"₹ 23,999",
+"₹ 66,999",
+"₹ 41,999",
+"₹ 14,499",
+"₹ 26,999",
+"₹ 17,999",
+];
+
+
+
+return Scaffold(
+appBar: AppBar(
+title: Text("Mobile Products List"),
+),
+body: ListView.builder(
+itemBuilder: (BuildContext, index) {
+return Card(
+child: ListTile(
+leading: CircleAvatar(
+radius: 25,
+backgroundImage: NetworkImage(images[index]),
+),
+title: Text(str[index]),
+subtitle: Text(desc[index]),
+),
+);
+},
+itemCount: images.length,
+shrinkWrap: true,
+padding: EdgeInsets.all(10),
+scrollDirection: Axis.vertical,
+));
+}
+}
+
+
+
+
+4. Design a calculator app using flutter as shown below: 
+import 'package:flutter/material.dart';
+
+
+Main.dart
+import 'package:flutter/material.dart';
+import 'new.dart';
+import 'package:flutter/material.dart';
+
+
+void main() {
+ runApp(MaterialApp(
+   home:MyHomePage(),
+ ));
+}
+
+
+
+
+new.dart
+import 'package:flutter/material.dart';
+
+
+void main() {
+ runApp(const MyApp());
+}
+
+
+class MyApp extends StatelessWidget {
+ const MyApp({Key? key}) : super(key: key);
+
+
+ // This widget is the root of your application.
+ @override
+ Widget build(BuildContext context) {
+   return MaterialApp(
+     title: 'Calculator',
+     theme: ThemeData(
+       // This is the theme of your application.
+       //
+       // Try running your application with "flutter run". You'll see the
+       // application has a blue toolbar. Then, without quitting the app, try
+       // changing the primarySwatch below to Colors.green and then invoke
+       // "hot reload" (press "r" in the console where you ran "flutter run",
+       // or simply save your changes to "hot reload" in a Flutter IDE).
+       // Notice that the counter didn't reset back to zero; the application
+       // is not restarted.
+       primarySwatch: Colors.blueGrey,
+     ),
+     home: const MyHomePage(),
+   );
+ }
+}
+
+
+class MyHomePage extends StatefulWidget {
+ const MyHomePage({Key? key}) : super(key: key);
+
+
+ @override
+ State<MyHomePage> createState() => _MyHomePageState();
+}
+
+
+class _MyHomePageState extends State<MyHomePage> {
+ late int firstnum;
+ late int secondnum;
+ late String texttodisplay = "";
+ late String res;
+ late String operatortoperform;
+
+
+ void btnclicked(String btnval) {
+   if (btnval == "C") {
+     texttodisplay = "";
+     firstnum = 0;
+     secondnum = 0;
+     res = "";
+   } else if (btnval == "+" ||
+       btnval == "-" ||
+       btnval == "*" ||
+       btnval == "/") {
+     firstnum = int.parse(texttodisplay);
+     res = "";
+     operatortoperform = btnval;
+   } else if (btnval == "=") {
+     secondnum = int.parse(texttodisplay);
+     if (operatortoperform == "+") {
+       res = (firstnum + secondnum).toString();
+     }
+     if (operatortoperform == "-") {
+       res = (firstnum - secondnum).toString();
+     }
+     if (operatortoperform == "*") {
+       res = (firstnum * secondnum).toString();
+     }
+     if (operatortoperform == "/") {
+       res = (firstnum / secondnum).toString();
+     }
+   } else {
+     res = int.parse(texttodisplay + btnval).toString();
+   }
+
+
+   setState(() {
+     texttodisplay = res;
+   });
+ }
+
+
+ Widget custombutton(String btnval) {
+   return Expanded(
+     child: OutlinedButton(
+       onPressed: () => btnclicked(btnval),
+       child: Text(
+         '$btnval',
+         style: TextStyle(fontSize: 75.0),
+       ),
+     ),
+   );
+ }
+
+
+ @override
+ Widget build(BuildContext context) {
+   return Scaffold(
+       appBar: AppBar(
+         title: Text(
+           'Calculator',
+         ),
+         centerTitle: true,
+       ),
+       body: Container(
+         child: Column(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: <Widget>[
+               Expanded(
+                 child: Container(
+                   padding: EdgeInsets.all(10.0),
+                   alignment: Alignment.bottomRight,
+                   child: Text('$texttodisplay',
+                       style: TextStyle(
+                         fontSize: 75.0,
+                         fontWeight: FontWeight.w600,
+                       )),
+                 ),
+               ),
+               Row(
+                 children: <Widget>[
+                   custombutton("9"),
+                   custombutton("8"),
+                   custombutton("7"),
+                   custombutton("+"),
+                 ],
+               ),
+               Row(
+                 children: <Widget>[
+                   custombutton("6"),
+                   custombutton("5"),
+                   custombutton("4"),
+                   custombutton("-"),
+                 ],
+               ),
+               Row(
+                 children: <Widget>[
+                   custombutton("3"),
+                   custombutton("2"),
+                   custombutton("1"),
+                   custombutton("*"),
+                 ],
+               ),
+               Row(
+                 children: <Widget>[
+                   custombutton("C"),
+                   custombutton("0"),
+                   custombutton("="),
+                   custombutton("/"),
+                 ],
+               ),
+             ]),
+       ));
+ }
+}
+
+
+
+
+5. Write a flutter program to design registration form for restaurant table booking system. On successful  registration, the customer’s details must be reflected in the firebase database. 
+6. Design a responsive UI for college website. The home page must have college name and logo. It must  have tabs like About Us, Academics, Library, Placements and Admissions. The home page must also  have an announcement section. 
+///(do in terminal)npx create-react-app myapp
+cd myapp
+npm i react-router-dom
+
+
+App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
+import AboutUs from './AboutUs';
+import Academics from './Academics';
+import Library from './Library';
+import Placements from './Placements';
+import Admissions from './Admissions';
+import AnnouncementSection from './AnnouncementSection';
+import './App.css';
+
+
+function App() {
+  return (
+    <Router>
+      <div className="container">
+        <header>
+          <img src="sfit_logo.jpg" alt="College Logo" />
+          <h1>St. Francis Institute of Technology</h1>
+        </header>
+        <nav>
+          <ul>
+            <li><NavLink exact to="/" activeClassName="active">About Us</NavLink></li>
+            <li><NavLink to="/academics" activeClassName="active">Academics</NavLink></li>
+            <li><NavLink to="/library" activeClassName="active">Library</NavLink></li>
+            <li><NavLink to="/placements" activeClassName="active">Placements</NavLink></li>
+            <li><NavLink to="/admissions" activeClassName="active">Admissions</NavLink></li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route exact path="/" element={<AboutUs />} />
+          <Route path="/academics" element={<Academics />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/placements" element={<Placements />} />
+          <Route path="/admissions" element={<Admissions />} />
+        </Routes>
+        <AnnouncementSection />
+        <footer>
+          <p>Copyright &copy; {new Date().getFullYear()}
+            College Name. All rights reserved.</p>
+        </footer>
+      </div>
+    </Router>
+  );
+}
+
+
+export default App;
+
+
+App.css
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+
+header {
+  background-color: white;
+  color: #de2518;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+h1 {
+  margin: 0;
+}
+
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #fc9929;
+  color: white;
+  margin-bottom: 1rem;
+  padding: 20px;
+}
+
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  transition: background-color 0.3s;
+}
+nav a:hover {
+  background-color: #f08306;
+}
+
+
+main {
+  padding: 1rem;
+  background-color: white;
+}
+
+
+section {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f2f2f2;
+}
+
+
+h2 {
+  margin-top: 0;
+}
+
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+
+.announcement {
+  background-color: #f7dc6f;
+  color: #333;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.announcement h3 {
+  margin-top: 0;
+}
+
+
+.aboutus-img {
+  float: right;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.aboutus p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.aboutus h3 {
+  margin-top: 0;
+}
+
+
+.academics-img {
+  float: left;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.academics p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.academics h3 {
+  margin-top: 0;
+}
+
+
+.library p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.library h3 {
+  margin-top: 0;
+}
+
+
+.placements p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.placements h3 {
+  margin-top: 0;
+}
+
+
+.admissions p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+
+.admissions h3 {
+  margin-top: 0;
+}
+img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+}
+
+
+AboutUs.jsx
+import React from 'react';
+
+
+function AboutUs() {
+  return (
+    <div>
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit tellus eu metus bibendum, eu pretium metus vestibulum. Morbi pharetra ante magna, id semper purus tempus in. Duis elementum nibh eu sapien sagittis, a feugiat erat fringilla. Ut consectetur neque eu odio pulvinar, ut aliquet sapien pellentesque. Vivamus eu mi dignissim, ultricies ante vel, suscipit dolor. Suspendisse sed quam vel nibh pretium ullamcorper vel quis urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+      <p>Nullam eget nulla nec enim dictum iaculis. Fusce a convallis ipsum. Morbi id erat eget lorem porttitor molestie sed eget ipsum. Vestibulum id dapibus mauris. Nunc in lacus eget velit vehicula lobortis. Sed tincidunt, nunc vitae fringilla lacinia, lorem nulla malesuada ex, in efficitur orci dolor at mauris. Nulla facilisi. Nulla lacinia, ex quis efficitur laoreet, justo dolor viverra turpis, vel dictum velit orci nec nulla. Morbi malesuada sapien odio, vel viverra est faucibus quis.</p>
+    </div>
+  );
+}
+
+
+export default AboutUs;
+
+
+Academics.jsx
+import React from 'react';
+
+
+function Academics() {
+  return (
+    <div>
+      <h2>Academics</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit tellus eu metus bibendum, eu pretium metus vestibulum. Morbi pharetra ante magna, id semper purus tempus in. Duis elementum nibh eu sapien sagittis, a feugiat erat fringilla. Ut consectetur neque eu odio pulvinar, ut aliquet sapien pellentesque. Vivamus eu mi dignissim, ultricies ante vel, suscipit dolor. Suspendisse sed quam vel nibh pretium ullamcorper vel quis urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+      <h3>Courses Offered</h3>
+      <ul>
+        <li>Bachelor of Arts</li>
+        <li>Bachelor of Science</li>
+        <li>Bachelor of Commerce</li>
+        <li>Bachelor of Computer Applications</li>
+        <li>Master of Arts</li>
+        <li>Master of Science</li>
+        <li>Master of Commerce</li>
+        <li>Master of Computer Applications</li>
+      </ul>
+    </div>
+  );
+}
+
+
+export default Academics;
+
+
+Admissions.jsx
+import React from 'react';
+
+
+function Admissions() {
+  return (
+    <div>
+      <h2>Admissions</h2>
+      <p>The college offers various undergraduate and postgraduate courses in different streams. Admissions to these courses are done on the basis of merit and performance in entrance exams, as applicable. The admission process is transparent, and all guidelines and procedures are strictly followed.</p>
+      <h3>Eligibility Criteria</h3>
+      <p>The eligibility criteria for admission to various courses are as follows:</p>
+      <ul>
+        <li>For undergraduate courses: Passed 10+2 examination with minimum 50% aggregate marks</li>
+        <li>For postgraduate courses: Completed undergraduate degree in relevant stream with minimum 50% aggregate marks</li>
+      </ul>
+      <h3>Admission Process</h3>
+      <p>The admission process for various courses consists of the following steps:</p>
+      <ol>
+        <li>Registration and submission of application form</li>
+        <li>Admission test/entrance exam (if applicable)</li>
+        <li>Declaration of results and merit list</li>
+        <li>Counseling and seat allotment</li>
+        <li>Payment of fees and confirmation of admission</li>
+      </ol>
+      <h3>Important Dates</h3>
+      <p>The important dates for admission to various courses are as follows:</p>
+      <ul>
+        <li>Application start date: 1st May</li>
+        <li>Application end date: 15th June</li>
+        <li>Admission test date: 1st July</li>
+        <li>Declaration of results: 15th July</li>
+        <li>Counseling start date: 1st August</li>
+        <li>Classes start date: 1st September</li>
+      </ul>
+    </div>
+  );
+}
+
+
+export default Admissions;
+
+
+AnnouncementsSection.jsx
+import React from 'react';
+
+
+function AnnouncementSection() {
+  const announcements = [
+    {
+      id: 1,
+      title: 'Welcome to our new website!',
+      description: 'We are pleased to announce the launch of our new website. Please explore the site and let us know what you think.',
+      date: 'April 1, 2023'
+    },
+    {
+      id: 2,
+      title: 'Admissions now open',
+      description: 'Admissions for the 2023-24 academic year are now open. Please visit the Admissions section of our website for more information.',
+      date: 'April 15, 2023'
+    },
+    {
+      id: 3,
+      title: 'Campus reopening',
+      description: 'We are excited to announce that our campus will be reopening for in-person classes starting from May 1, 2023. Please see the Academics section of our website for the revised class schedule.',
+      date: 'April 20, 2023'
+    }
+  ];
+
+
+  return (
+    <div>
+      <h2>Announcements</h2>
+      {announcements.map(announcement => (
+        <div key={announcement.id}>
+          <h3>{announcement.title}</h3>
+          <p>{announcement.description}</p>
+          <p><em>{announcement.date}</em></p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+export default AnnouncementSection;
+
+
+Library.jsx
+import React from 'react';
+
+
+function Library() {
+  return (
+    <div>
+      <h2>Library</h2>
+      <p>Welcome to the college library. Our library is a state-of-the-art facility that houses a vast collection of books, journals, and digital resources.</p>
+      <h3>Library Services</h3>
+      <ul>
+        <li>Book lending and return</li>
+        <li>Online book reservation</li>
+        <li>Reference and research assistance</li>
+        <li>Interlibrary loan</li>
+        <li>Photocopying and printing</li>
+        <li>Computer and internet access</li>
+      </ul>
+      <h3>Library Timings</h3>
+      <p>The library is open from 9:00 am to 5:00 pm on all weekdays and from 10:00 am to 2:00 pm on Saturdays. It is closed on Sundays and public holidays.</p>
+    </div>
+  );
+}
+
+
+export default Library;
+
+
+Placements.jsx
+import React from 'react';
+
+
+function Placements() {
+  return (
+    <div>
+      <h2>Placements</h2>
+      <p>The college has a dedicated placements cell that works to provide job opportunities to students. We have tie-ups with several leading companies in various industries, and our students have secured placements in some of the top companies in their respective fields.</p>
+      <h3>Placement Process</h3>
+      <p>The placements cell follows a well-defined process to ensure that students are provided with the best possible job opportunities. The process includes:</p>
+      <ol>
+        <li>Identification of job opportunities</li>
+        <li>Preparation of students through training and workshops</li>
+        <li>Campus interviews and selection</li>
+        <li>Finalization of job offers</li>
+      </ol>
+      <h3>Placement Statistics</h3>
+      <p>Over the years, our college has maintained a high placement record, with several of our students securing job offers from top companies. Some of our recent placement statistics are as follows:</p>
+      <ul>
+        <li>Number of companies visited: 50</li>
+        <li>Total number of students placed: 200</li>
+        <li>Average package offered: 9,00,000 per annum</li>
+      </ul>
+    </div>
+  );
+}
+
+
+export default Placements;
+
+
+
+
+7. Create a web manifest file for PWA. 
+npx create-react-app mywebsite_pwa --template cra-template-pwa
+npm-start
+
+
+//////////App.js
+
+
+import React from "react";
+import "./App.css";
+import axios from "axios";
+import { useState } from "react";
+function App() {
+const [image, setImage] = useState("");
+const clientId = "hg7mT8JhmS34DizsuenA1wvbEZfIWEsjpcDP7Hurcgk";
+const [result, setResult] = useState([]);
+const handleChange = (event) => {
+ setImage(event.target.value);
+};
+const handleSubmit = () => {
+console.log(image);
+const url = "https://api.unsplash.com/search/photos?page=1&query=" + image + "&client_id=" + clientId;
+axios.get(url).then((response) => {
+console.log(response);
+setResult(response.data.results);
+});
+};
+return (
+<div className="app">
+ <div className="heading">
+   <h1>React Image Search Using Unsplash API.</h1>
+ </div>
+ 
+ <div className="input">
+  <input onChange={handleChange} type="text" name="image"    placeholder="Search for images"/>
+ </div>
+  <button onClick={handleSubmit} type="submit">Search</button>
+<div className="result">
+  {result.map((image) => (
+  <>
+   <div className="card">
+    <img src={image.urls.thumb} />
+    <p className="username"> Photo by {image.user.name}</p>
+    <p className="like">👍 {image.likes}</p>
+   </div>
+  </>
+   ))}
+</div>
+</div>
+);
+  }
+  export default App;
+
+
+
+
+////app.css
+
+
+* {
+  margin: 0;
+  background-color: rgb(236, 221, 226);
+  }
+  .app {
+  display: flex;
+  padding-top: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .input {
+  padding: 10px 20px;
+  }
+  .input > input {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 300px;
+  padding: 10px 20px;
+  }
+  button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: 300px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(4, 100, 243);
+  }
+  button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(58, 71, 90);
+  }
+  button:active {
+  background-color: cornflowerblue;
+  width: 290px;
+  }
+  .card {
+  padding: 5px;
+  width: auto;
+  height: auto;
+  }
+  .result {
+  display: grid;
+  grid-column-gap: 5px;
+  grid-template-columns: auto auto auto;
+  width: auto;
+  height: auto;
+  }
+  .result > img {
+  flex-wrap: nowrap;
+  margin: 5px;
+  }
+  .username{
+  width: 200px;
+  }
+  @media screen and (max-width: 700px) {
+   .result {
+    display: flex;
+    flex-direction: column;
+   }
+  }
+
+
+
+
+npm install axios (command)
+
+
+///unregister to register in index.js
+
+
+////service worker 
+(run commands)
+npm install -g serve
+npm run build
+cd /build
+npx serve build 
+
+
+////inspect applications registration and service workers.
+
+
+8. Design a registration form and login form for clinical ERP system. Write 2 test cases for the same.
+main.dart
+import 'package:flutter/material.dart';
+
+
+void main() => runApp(MyApp());
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Form',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Test Flutter Form'),
+    );
+  }
+}
+
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+
+  final String title;
+
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                controller: _nameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name.';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                ),
+              ),
+              TextFormField(
+                controller: _emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email.';
+                  }
+                  if (!value.contains('@')) {
+                    return 'Please enter a valid email address.';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Processing Data')),
+                      );
+                    }
+                  },
+                  child: Text('Submit'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+widget_test.dart
+
+
+import 'package:exp7_test/main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+
+void main() {
+  group('Form Validation Tests', () {
+    testWidgets('Test that the name field cannot be empty',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MyApp());
+      final nameTextField = find.widgetWithText(TextFormField, 'Name');
+      expect(nameTextField, findsOneWidget);
+      await tester.tap(nameTextField);
+      await tester.enterText(nameTextField, '');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Please enter your name.'), findsOneWidget);
+    });
+    testWidgets('Test that the email field cannot be empty',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MyApp());
+      final emailTextField = find.widgetWithText(TextFormField, 'Email');
+      expect(emailTextField, findsOneWidget);
+      await tester.tap(emailTextField);
+      await tester.enterText(emailTextField, '');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Please enter your email.'), findsOneWidget);
+    });
+    testWidgets('Test that the email field must contain "@"',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MyApp());
+      final emailTextField = find.widgetWithText(TextFormField, 'Email');
+      expect(emailTextField, findsOneWidget);
+      await tester.tap(emailTextField);
+      await tester.enterText(emailTextField, 'testemail');
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump();
+      expect(find.text('Please enter a valid email address.'), findsOneWidget);
+    });
+    testWidgets('Test that submitting a valid form displays a snackbar message',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MyApp());
+      final nameTextField = find.widgetWithText(TextFormField, 'Name');
+      expect(nameTextField, findsOneWidget);
+      await tester.tap(nameTextField);
+      await tester.enterText(nameTextField, 'Jod');
+      final emailTextField = find.widgetWithText(TextFormField, 'Email');
+      expect(emailTextField, findsOneWidget);
+      await tester.tap(emailTextField);
+      await tester.enterText(emailTextField, 'OffendMathoyaar@example.com');
+      final submitButton = find.widgetWithText(ElevatedButton, 'Submit');
+      expect(submitButton, findsOneWidget);
+      await tester.tap(submitButton);
+      await tester.pump();
+      expect(find.text('Processing Data'), findsOneWidget);
+    });
+  });
+}
