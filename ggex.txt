@@ -149,6 +149,8 @@ Create a asset folder in root folder,and put the images as per following image.
 Run command Pub get
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 2. Write a flutter program to create a display page using scaffold widget showing an image having  Book Store name and a floating button. On click of the floating button a new menu page should  open to display the details of at least 7 books as shown below: 
 Main.dart:
  import 'package:flutter/material.dart';
@@ -287,7 +289,7 @@ scrollDirection: Axis.vertical,
 
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -416,7 +418,7 @@ scrollDirection: Axis.vertical,
 }
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4. Design a calculator app using flutter as shown below: 
 import 'package:flutter/material.dart';
@@ -602,10 +604,16 @@ class _MyHomePageState extends State<MyHomePage> {
  }
 }
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 5. Write a flutter program to design registration form for restaurant table booking system. On successful  registration, the customer’s details must be reflected in the firebase database. 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 6. Design a responsive UI for college website. The home page must have college name and logo. It must  have tabs like About Us, Academics, Library, Placements and Admissions. The home page must also  have an announcement section. 
 ///(do in terminal)npx create-react-app myapp
 cd myapp
@@ -1010,7 +1018,7 @@ function Placements() {
 export default Placements;
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 7. Create a web manifest file for PWA. 
 npx create-react-app mywebsite_pwa --template cra-template-pwa
@@ -1152,6 +1160,10 @@ npx serve build
 
 
 ////inspect applications registration and service workers.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 8. Design a registration form and login form for clinical ERP system. Write 2 test cases for the same.
